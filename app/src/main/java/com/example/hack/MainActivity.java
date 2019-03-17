@@ -47,7 +47,7 @@ import java.util.stream.IntStream;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArFragment arFragment;
-    private ModelRenderable fileRenderable, chariRenderable;
+    private ModelRenderable bedRenderable, chariRenderable, newsofaRenderable, couchRenderable, buddhaRenderable;
     private List<ModelRenderable> assetsFiles = new ArrayList<>();
 
     ImageView bedroom, chair, buddha, couch, newsofa;
@@ -107,6 +107,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         filesUrls.add("http://10.2.41.84:4200/assets/buddha.sfb");
         filesUrls.add("http://10.2.41.84:4200/assets/Bedroom.sfb");
 
+//        ModelRenderable.builder()
+//                .setSource(this,Uri.parse("http://10.2.41.84:4200/assets/chair.sfb"))
+//                .build().thenAccept(renderable -> chariRenderable = renderable)
+//                .exceptionally(
+//                        throwable -> {
+//                            Toast.makeText(this, "Unable to load file model", Toast.LENGTH_SHORT).show();
+//                            return null;
+//                        }
+//                );
+//        ModelRenderable.builder()
+//                .setSource(this,Uri.parse("http://10.2.41.84:4200/assets/newSofa.sfb"))
+//                .build().thenAccept(renderable -> newsofaRenderable = renderable)
+//                .exceptionally(
+//                        throwable -> {
+//                            Toast.makeText(this, "Unable to load file model", Toast.LENGTH_SHORT).show();
+//                            return null;
+//                        }
+//                );
+//        ModelRenderable.builder()
+//                .setSource(this,Uri.parse("http://10.2.41.84:4200/assets/Couch.sfb"))
+//                .build().thenAccept(renderable -> couchRenderable = renderable)
+//                .exceptionally(
+//                        throwable -> {
+//                            Toast.makeText(this, "Unable to load file model", Toast.LENGTH_SHORT).show();
+//                            return null;
+//                        }
+//                );
+//        ModelRenderable.builder()
+//                .setSource(this,Uri.parse("http://10.2.41.84:4200/assets/buddha.sfb"))
+//                .build().thenAccept(renderable -> buddhaRenderable = renderable)
+//                .exceptionally(
+//                        throwable -> {
+//                            Toast.makeText(this, "Unable to load file model", Toast.LENGTH_SHORT).show();
+//                            return null;
+//                        }
+//                );
+//        ModelRenderable.builder()
+//                .setSource(this,Uri.parse("http://10.2.41.84:4200/assets/Bedroom.sfb"))
+//                .build().thenAccept(renderable -> bedRenderable = renderable)
+//                .exceptionally(
+//                        throwable -> {
+//                            Toast.makeText(this, "Unable to load file model", Toast.LENGTH_SHORT).show();
+//                            return null;
+//                        }
+//                );
 
 
         for(int i = 0; i < filesUrls.size(); i++){
