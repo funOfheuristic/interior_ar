@@ -76,34 +76,35 @@
             android:id="@+id/green"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text=""
-            android:background="@android:color/holo_green_light"
-            android:layout_marginTop="150dp"
             android:layout_marginLeft="10dp"
-            android:onClick="setColour"/>
+            android:layout_marginTop="150dp"
+            android:background="@android:color/holo_green_light"
+            android:onClick="setColour"
+            android:text="" />
 
         <Button
             android:id="@+id/black"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text=""
             android:layout_below="@+id/green"
-            android:background="@android:color/black"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="10dp"
-            android:onClick="setColour"/>
+            android:layout_marginTop="8dp"
+            android:background="@android:color/black"
+            android:onClick="setColour"
+            android:text="" />
 
         <Button
             android:id="@+id/gray"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text=""
-            android:layout_centerVertical="true"
             android:layout_below="@+id/black"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="8dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:onClick="setColour"/>
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            android:onClick="setColour"
+            android:text="" />
+
 
     </RelativeLayout>
 

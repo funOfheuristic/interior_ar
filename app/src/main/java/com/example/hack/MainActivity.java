@@ -1,12 +1,21 @@
 package com.example.hack;
 
 //import android.graphics.Color;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
+import android.view.PixelCopy;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,6 +24,7 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.ArSceneView;
 import com.google.ar.sceneform.collision.CollisionShape;
 import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.Material;
@@ -24,7 +34,13 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.BaseArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -39,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View arrayView[];
     ViewRenderable name_file;
 
-    int selected = 0;
+    int selected = 4;
 
     int selectedColor = 0;
 
@@ -164,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(selected >= 0 && selected < assetsFiles.size()){
             TransformableNode file = new TransformableNode(arFragment.getTransformationSystem());
             file.setParent(anchorNode);
-            Toast.makeText(this, "selected is"+selected, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "selected is"+selected, Toast.LENGTH_SHORT).show();
 
             file.setRenderable(assetsFiles.get(selected));
 
@@ -188,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(this, "selected 1"+v.getId(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "selected 1"+v.getId(), Toast.LENGTH_SHORT).show();
         if(v.getId() == R.id.chair){
             selected = 4;
 //            Toast.makeText(this, "selected 0"+selected, Toast.LENGTH_SHORT).show();
@@ -239,4 +255,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             selectedColor = 3;
         }
     }
+
+//    private String generateFilename() {
+//        String date =
+//                new SimpleDateFormat("yyyyMMddHHmmss", java.util.Locale.getDefault()).format(new Date());
+//        return Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES) + File.separator + "Sceneform/" + date + "_screenshot.jpg";
+//    }
+//
+//    private void saveBitmapToDisk(Bitmap bitmap, String filename) throws IOException {
+//
+//        File out = new File(filename);
+//        if (!out.getParentFile().exists()) {
+//            out.getParentFile().mkdirs();
+//        }
+//        try (FileOutputStream outputStream = new FileOutputStream(filename);
+//             ByteArrayOutputStream outputData = new ByteArrayOutputStream()) {
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputData);
+//            outputData.writeTo(outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//        } catch (IOException ex) {
+//            throw new IOException("Failed to save bitmap to disk", ex);
+//        }
+//    }
+//
+//    public void takePhoto(View w) {
+//        final String filename = generateFilename();
+//        ArSceneView view = arFragment.getArSceneView();
+//
+//        // Create a bitmap the size of the scene view.
+//        final Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),
+//                Bitmap.Config.ARGB_8888);
+//
+//        // Create a handler thread to offload the processing of the image.
+//        final HandlerThread handlerThread = new HandlerThread("PixelCopier");
+//        handlerThread.start();
+//        // Make the request to copy.
+//        PixelCopy.request(view, bitmap, (copyResult) -> {
+//            if (copyResult == PixelCopy.SUCCESS) {
+//                try {
+//                    saveBitmapToDisk(bitmap, filename);
+//                } catch (IOException e) {
+//                    Toast toast = Toast.makeText(MainActivity.this, e.toString(),
+//                            Toast.LENGTH_LONG);
+//                    toast.show();
+//                    return;
+//                }
+//                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+//                        "Photo saved", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("Open in Photos", v -> {
+//                    File photoFile = new File(filename);
+//
+//                    Uri photoURI = FileProvider.getUriForFile(MainActivity.this,
+//                            MainActivity.this.getPackageName() + ".ar.codelab.name.provider",
+//                            photoFile);
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, photoURI);
+//                    intent.setDataAndType(photoURI, "image/*");
+//                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                    startActivity(intent);
+//
+//                });
+//                snackbar.show();
+//            } else {
+//                Toast toast = Toast.makeText(MainActivity.this,
+//                        "Failed to copyPixels: " + copyResult, Toast.LENGTH_LONG);
+//                toast.show();
+//            }
+//            handlerThread.quitSafely();
+//        }, new Handler(handlerThread.getLooper()));
+//    }
 }
